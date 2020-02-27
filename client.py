@@ -21,7 +21,7 @@ def rec():
         x.ballPosX = data[1]
         x.ballPosY = data[2]
 
-server = "192.168.0.11"
+server = "192.168.0.13"
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 3001
 client.connect((server, port))
