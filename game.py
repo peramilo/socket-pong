@@ -37,7 +37,7 @@ class Game:
         if self.ballPosY - self.ballRad <= 0 or self.ballPosY + self.ballRad >= self.screenHeight:               #Checks and handles for top/bottom wall collision
             self.ballVelY = - self.ballVelY
 
-        if self.ballPosX - self.ballRad <= 0 or self.ballPosX + self.ballRad >= self.screenWidth:                #
+        if self.ballPosX - self.ballRad <= 0 or self.ballPosX + self.ballRad >= self.screenWidth:                
             self.ballVelX = - self.ballVelX
 
         if abs(self.ballPosX - self.pad1PosX - self.padWidth) <= self.ballRad:                              #Checks and handles Paddle 1 collisions
