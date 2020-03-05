@@ -19,6 +19,7 @@ class Game:
         self.screenHeight = 600
         self.BLACK = (0, 0, 0)
         self.screen = pygame.display.set_mode((self.screenWidth, self.screenHeight))
+        self.winner = '0'
         
     def drawScreen(self):
         self.screen.fill(self.BLACK)
@@ -37,8 +38,15 @@ class Game:
         if self.ballPosY - self.ballRad <= 0 or self.ballPosY + self.ballRad >= self.screenHeight:               #Checks and handles for top/bottom wall collision
             self.ballVelY = - self.ballVelY
 
-        if self.ballPosX - self.ballRad <= 0 or self.ballPosX + self.ballRad >= self.screenWidth:                
-            self.ballVelX = - self.ballVelX
+        if self.ballPosX - self.ballRad <= 0:                
+            self.ballVelX = 0
+            self.ballVelY = 0
+            self.winner = 'P2'
+
+        if self.ballPosX + self.ballRad >= self.screenWidth:
+            self.ballVelX = 0
+            self.ballVelY = 0
+            self.winner = 'P1'
 
         if abs(self.ballPosX - self.pad1PosX - self.padWidth) <= self.ballRad:                              #Checks and handles Paddle 1 collisions
             if self.ballPosY - self.ballRad >= self.pad1PosY and self.ballPosY + self.ballRad <= self.pad1PosY + self.padHeight:

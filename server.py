@@ -27,12 +27,12 @@ server.listen(2)
 print("Waiting client...")
 conn, add = server.accept()
 x = Game()
-x.ballVelX = 5
-x.ballVelY = -5
+x.ballVelX = 4
+x.ballVelY = -4
 recThread = threading.Thread(target=rec)
 recThread.start()
 fps = pygame.time.Clock()
-while True:    
+while x.winner == '0':    
     x.drawScreen()
     x.coll()
     x.moveBall()
@@ -43,11 +43,16 @@ while True:
             if event.key == pygame.K_UP:
                 x.pad1Vel -= 3
             if event.key == pygame.K_DOWN:
-                x.pad1Vel += 3
+                x.pad1Vel += 3 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
                 x.pad1Vel += 3
             if event.key == pygame.K_DOWN:
                 x.pad1Vel -= 3
+        if event.type == pygame.QUIT:
+            pygame.quit()
     x.movePad1()
     sen()
+recThread.join()    
+print(x.winner, " is the winner!")
+pygame.quit()

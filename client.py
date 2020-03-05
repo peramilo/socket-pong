@@ -4,7 +4,7 @@ import pygame
 import pickle
 from game import Game
 
-err = 0
+
 def sen():
     mess = pickle.dumps(x.pad2PosY)
     client.send(mess)
@@ -14,12 +14,11 @@ def rec():
         try:
             data = pickle.loads(client.recv(24))
         except:
-            global err
-            err += 1
-            print(err)
+            print('Pickle error')
         x.pad1PosY = data[0]
         x.ballPosX = data[1]
         x.ballPosY = data[2]
+
 
 server = "192.168.0.13"
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -44,5 +43,7 @@ while True:
                 x.pad2Vel = 0
             if event.key == pygame.K_DOWN:
                 x.pad2Vel = 0
+        if event.type == pygame.QUIT:
+                pygame.quit()
     x.movePad2()
     sen()
